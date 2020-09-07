@@ -6,8 +6,9 @@ import java.util.HashMap;
 
 public class TSVWriter {
 	
-	public static void indexWriter(Path outputFile, HashMap<String, ArrayList<String>> fileMap) {
+	public static void indexWriter(Path outputFile, HashMap<String, String[]> fileMap) {
 		
+		// TODO indexwriter
 		
 	}
 

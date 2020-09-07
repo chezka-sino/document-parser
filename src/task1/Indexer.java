@@ -2,18 +2,17 @@ package task1;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Indexer {
 	
-	private final HashMap<String, ArrayList<String>> map;
+	private final HashMap<String, String[]> map;
 	
 	public Indexer() {
 		map = new HashMap<>();
 	}
 	
-	public void add(String category, ArrayList<String> information) {
+	public void add(String category, String information[]) {
 		map.put(category, information);
 	}
 

@@ -14,8 +14,6 @@ public class Driver {
 		
 		ArrayList<String> documents = new ArrayList<>();
 		Indexer index = new Indexer();
-
-		// TODO use invertedindexbuilder as a guide to opening each file
 		
 		Path dir = Paths.get(path);
 		documents.addAll(DirectoryTraverser.traverse(dir));
