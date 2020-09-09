@@ -22,7 +22,7 @@ public class IndexBuilder {
 	public static void openFile(Path inputFile, Indexer indexer) {
 		
 		String information[] = new String[4];
-		Arrays.fill(information, null);
+		Arrays.fill(information, "N/A");
 		
 		String category = inputFile.getParent().getFileName().toString();
 		
@@ -43,10 +43,15 @@ public class IndexBuilder {
 				
 				//for the needed information
 				if (line.contains(":")) {
-					// TODO check if startswith info needed
 					
 					if (line.startsWith("From")) {
 						information[0] = LineCleaner.getData(line);
+					}
+					else if (line.startsWith("Organization")) {
+						information[1] = LineCleaner.getData(line);
+					}
+					else if (line.startsWith("Subject")) {
+						information[2] = LineCleaner.getData(line);
 					}
 					
 				}
@@ -60,6 +65,10 @@ public class IndexBuilder {
 			}
 			
 			System.out.println(information[0]);
+			System.out.println(information[1]);
+			System.out.println(information[2]);
+			System.out.println();
+			
 			
 		} 
 		
