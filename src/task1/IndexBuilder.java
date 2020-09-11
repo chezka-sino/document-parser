@@ -27,10 +27,6 @@ public class IndexBuilder {
 		String category = inputFile.getParent().getFileName().toString();
 		
 		// TODO parse through file for information
-		// information[0]: from
-		// information[1]: organization
-		// information[2]: subject
-		// information[3]: body
 		
 		try (BufferedReader reader = Files.newBufferedReader(inputFile)) {
 			
@@ -58,15 +54,22 @@ public class IndexBuilder {
 				
 				// lines for body
 				else {
-					// using + since /n can't be used when writing tsv
-					body+=line + '+'; 
+					// NOTE: using + since /n can't be used when writing tsv
+					if (!line.startsWith("In article") & !line.startsWith(">")) {
+						body += LineCleaner.cleanLine(line) + " ";
+					}
+					 
 				}
 				
 			}
 			
-			System.out.println(information[0]);
-			System.out.println(information[1]);
-			System.out.println(information[2]);
+			body = body.replaceAll("\\s+", " ");
+			information[3] = body.trim();
+			
+//			System.out.println(information[0]);
+//			System.out.println(information[1]);
+//			System.out.println(information[2]);
+			System.out.println(information[3]);
 			System.out.println();
 			
 			
