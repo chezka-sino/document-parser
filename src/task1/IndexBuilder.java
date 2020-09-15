@@ -1,8 +1,9 @@
 package task1;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.file.Files;
+import java.io.InputStreamReader;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -28,10 +29,13 @@ public class IndexBuilder {
 		
 		// TODO parse through file for information
 		
-		try (BufferedReader reader = Files.newBufferedReader(inputFile)) {
+		try (BufferedReader reader = new BufferedReader(new InputStreamReader(
+				new FileInputStream(inputFile.toString()),"utf-8"))) {
 			
 			String line;
 			String body = "";
+			
+			System.out.println(inputFile);
 			
 			while ((line = reader.readLine()) != null) {
 				
@@ -65,13 +69,6 @@ public class IndexBuilder {
 			
 			body = body.replaceAll("\\s+", " ");
 			information[3] = body.trim();
-			
-//			System.out.println(information[0]);
-//			System.out.println(information[1]);
-//			System.out.println(information[2]);
-			System.out.println(information[3]);
-			System.out.println();
-			
 			
 		} 
 		
