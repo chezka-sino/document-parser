@@ -1,23 +1,30 @@
 package task1;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
+import java.util.ArrayList;
 
 public class Indexer {
 	
-	private final HashMap<String, String[]> map;
+	private final ArrayList<String []> docInfo;
 	
 	public Indexer() {
-		map = new HashMap<>();
+		docInfo = new ArrayList<String[]>();
 	}
 	
-	public void add(String category, String information[]) {
-		map.put(category, information);
+	public void add(String information[]) {
+		docInfo.add(information);
 	}
 
-	public void toTSV(String output) {
+	public void toTSV(String output) throws IOException {
 		Path outputFile = Paths.get(output);
-		TSVWriter.indexWriter(outputFile, map);
+		TSVWriter.indexWriter(outputFile, docInfo);
+
+		
+		for (String test:docInfo.get(0)) {
+			System.out.println(test);
+		}
+			
 	}
 }

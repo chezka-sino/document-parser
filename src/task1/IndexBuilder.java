@@ -22,10 +22,10 @@ public class IndexBuilder {
 	
 	public static void openFile(Path inputFile, Indexer indexer) {
 		
-		String information[] = new String[4];
+		String information[] = new String[5];
 		Arrays.fill(information, "N/A");
 		
-		String category = inputFile.getParent().getFileName().toString();
+		information[0] = inputFile.getParent().getFileName().toString();
 		
 		// TODO parse through file for information
 		
@@ -35,8 +35,6 @@ public class IndexBuilder {
 			String line;
 			String body = "";
 			
-			System.out.println(inputFile);
-			
 			while ((line = reader.readLine()) != null) {
 				
 				line.toLowerCase();
@@ -45,13 +43,13 @@ public class IndexBuilder {
 				if (line.contains(":")) {
 					
 					if (line.startsWith("From")) {
-						information[0] = LineCleaner.getData(line);
-					}
-					else if (line.startsWith("Organization")) {
 						information[1] = LineCleaner.getData(line);
 					}
-					else if (line.startsWith("Subject")) {
+					else if (line.startsWith("Organization")) {
 						information[2] = LineCleaner.getData(line);
+					}
+					else if (line.startsWith("Subject")) {
+						information[3] = LineCleaner.getData(line);
 					}
 					
 				}
@@ -68,7 +66,7 @@ public class IndexBuilder {
 			}
 			
 			body = body.replaceAll("\\s+", " ");
-			information[3] = body.trim();
+			information[4] = body.trim();
 			
 		} 
 		
@@ -76,8 +74,14 @@ public class IndexBuilder {
 			System.err.println("Unable to read file: " + inputFile.toString());
 		}
 		
-		
-		indexer.add(category, information);
+//		System.out.println(information[0]);
+//		System.out.println(information[1]);
+//		System.out.println(information[2]);
+//		System.out.println(information[3]);
+//		System.out.println(information[4]);
+//		System.out.println();
+//		
+		indexer.add(information);
 		
 	}
 

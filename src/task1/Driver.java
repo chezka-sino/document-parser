@@ -20,7 +20,8 @@ public class Driver {
 		
 		IndexBuilder.readArray(documents, index);
 		
-//		index.toTSV(output);
+		System.out.println("Writing to tsv...");
+		index.toTSV(output);
 		
 	}
 
