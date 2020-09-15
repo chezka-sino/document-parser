@@ -6,13 +6,11 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Set;
+
 
 public class TSVWriter {
 	
-	private static final char TAB = '\t';
+	private static final String TAB = "\t";
 	
 	public static void indexWriter(Path outputFile, ArrayList<String[]> fileMap) 
 			throws IOException {
@@ -28,6 +26,10 @@ public class TSVWriter {
 //				String current = itr.next();
 //				System.out.println(current);
 //			}
+			for (String [] documentInfo:fileMap) {
+				writer.write(String.join(TAB, documentInfo));
+				writer.write("\n");
+			}
 			
 		}
 		

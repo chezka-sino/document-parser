@@ -7,13 +7,12 @@ public class LineCleaner {
 	
 	public static String getData(String line) {
 		
-		return line.substring(line.lastIndexOf(":") + 1).trim();
+		return line.substring(line.indexOf(":") + 1).trim();
 		
 	}
 	
 	public static String cleanLine(String line) {
 		
-		// TODO strip unnecessary characters and whitespaces
 		String text = line;
 		text = stripTags(text);
 		text = text.replaceAll(CLEAN_REGEX, "").toLowerCase().trim();
