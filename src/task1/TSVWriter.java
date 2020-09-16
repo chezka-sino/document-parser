@@ -15,20 +15,11 @@ public class TSVWriter {
 	public static void indexWriter(Path outputFile, ArrayList<String[]> fileMap) 
 			throws IOException {
 		
-		// TODO indexwriter
-		
 		try (BufferedWriter writer = Files.newBufferedWriter(outputFile, Charset.forName("UTF-8"))) {
 			
-			
-//			Iterator<String> itr = categories.iterator();
-//			
-//			while (itr.hasNext()) {
-//				String current = itr.next();
-//				System.out.println(current);
-//			}
 			for (String [] documentInfo:fileMap) {
-				writer.write(String.join(TAB, documentInfo));
-				writer.write("\n");
+				writer.write(String.join(TAB, documentInfo) + '\n');
+//				writer.write("\n");
 			}
 			
 		}

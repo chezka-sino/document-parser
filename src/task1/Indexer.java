@@ -18,7 +18,7 @@ public class Indexer {
 	}
 
 	public void toTSV(String output) throws IOException {
-		Path outputFile = Paths.get(output);
+		Path outputFile = Paths.get("results/" + output);
 		TSVWriter.indexWriter(outputFile, docInfo);			
 	}
 }

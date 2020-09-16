@@ -1,9 +1,11 @@
 package task1;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -18,6 +20,14 @@ public class IndexBuilder {
 			openFile(inputFile, indexer);
 		}
 		
+//		int i = 0;
+//		while (i< 600) {
+//			Path inputFile = Paths.get(documents.get(i));
+//			openFile(inputFile, indexer);
+//			i++;
+//			
+//		}
+		
 	}
 	
 	public static void openFile(Path inputFile, Indexer indexer) {
@@ -26,15 +36,14 @@ public class IndexBuilder {
 		Arrays.fill(information, "N/A");
 		
 		information[0] = inputFile.getParent().getFileName().toString();
-		
-		// TODO parse through file for information
+//		information[0] = inputFile.toString();
 		
 		try (BufferedReader reader = new BufferedReader(new InputStreamReader(
 				new FileInputStream(inputFile.toString()),"utf-8"))) {
 			
 			String line;
 			String body = "";
-			
+
 			while ((line = reader.readLine()) != null) {
 				
 				line.toLowerCase();
@@ -57,30 +66,31 @@ public class IndexBuilder {
 				// lines for body
 				else {
 					// NOTE: using + since /n can't be used when writing tsv
-					if (!line.startsWith("In article") & !line.startsWith(">")) {
+					if (!line.startsWith("In article") & !line.startsWith(">") & !line.isEmpty()) {
 						body += LineCleaner.cleanLine(line) + " ";
+//						body = "X";
+//						System.out.println(body);
 					}
-					 
+//					information[4] = body.trim();
 				}
 				
 			}
 			
-			body = body.replaceAll("\\s+", " ");
-			information[4] = body.trim();
+			if (!body.trim().isEmpty()) {
+				information[4] = body.trim();
+			}
 			
+//			System.out.println("HERE");
+//			System.out.println(body);
+//			body = body.replaceAll("\\s+", " ");
+			
+//			System.out.println(information[4]);
 		} 
 		
 		catch (IOException e) {
 			System.err.println("Unable to read file: " + inputFile.toString());
 		}
 		
-//		System.out.println(information[0]);
-//		System.out.println(information[1]);
-//		System.out.println(information[2]);
-//		System.out.println(information[3]);
-//		System.out.println(information[4]);
-//		System.out.println();
-//		
 		indexer.add(information);
 		
 	}

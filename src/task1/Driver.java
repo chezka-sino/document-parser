@@ -16,12 +16,18 @@ public class Driver {
 		Indexer index = new Indexer();
 		
 		Path dir = Paths.get(path);
-		documents.addAll(DirectoryTraverser.traverse(dir));
 		
+		System.out.println("Getting document file paths...");
+		documents.addAll(DirectoryTraverser.traverse(dir));
+		System.out.println("DONE\n");
+		
+		System.out.println("Processing data...");
 		IndexBuilder.readArray(documents, index);
+		System.out.println("DONE\n");
 		
 		System.out.println("Writing to tsv...");
 		index.toTSV(output);
+		System.out.println("See " + output + " for results\n");
 		
 	}
 
