@@ -31,6 +31,6 @@ public class LineCleaner {
 	public static String stripTags(String line) {
 		return line.replaceAll("<[^>]*>", "");
 	}
-	
+		
 
 }

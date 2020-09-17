@@ -1,11 +1,9 @@
 package task1;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -68,23 +66,16 @@ public class IndexBuilder {
 					// NOTE: using + since /n can't be used when writing tsv
 					if (!line.startsWith("In article") & !line.startsWith(">") & !line.isEmpty()) {
 						body += LineCleaner.cleanLine(line) + " ";
-//						body = "X";
-//						System.out.println(body);
 					}
-//					information[4] = body.trim();
+
 				}
 				
 			}
 			
 			if (!body.trim().isEmpty()) {
-				information[4] = body.trim();
+				information[4] = body.trim().replaceAll("\\s+", " ");
 			}
-			
-//			System.out.println("HERE");
-//			System.out.println(body);
-//			body = body.replaceAll("\\s+", " ");
-			
-//			System.out.println(information[4]);
+
 		} 
 		
 		catch (IOException e) {
