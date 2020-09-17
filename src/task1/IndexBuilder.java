@@ -11,6 +11,15 @@ import java.util.Arrays;
 
 public class IndexBuilder {
 	
+	/**
+	 * Goes through the list of files
+	 * 
+	 * @param documents
+	 * 			The list of documents to be parsed
+	 * @param indexer
+	 * 			Indexer object
+	 * @see Indexer 
+	 */
 	public static void readArray(ArrayList<String> documents, Indexer indexer) {
 		
 		for (String doc : documents) {
@@ -18,23 +27,23 @@ public class IndexBuilder {
 			openFile(inputFile, indexer);
 		}
 		
-//		int i = 0;
-//		while (i< 600) {
-//			Path inputFile = Paths.get(documents.get(i));
-//			openFile(inputFile, indexer);
-//			i++;
-//			
-//		}
-		
 	}
 	
+	/**
+	 * Reads through the files, puts the words in the map then calls the JSON
+	 * class to write it into the file
+	 * 
+	 * @param inputFile
+	 * 			the file to be checked
+	 * @param indexer
+	 * 			Indexer object
+	 */
 	public static void openFile(Path inputFile, Indexer indexer) {
 		
 		String information[] = new String[5];
 		Arrays.fill(information, "N/A");
 		
 		information[0] = inputFile.getParent().getFileName().toString();
-//		information[0] = inputFile.toString();
 		
 		try (BufferedReader reader = new BufferedReader(new InputStreamReader(
 				new FileInputStream(inputFile.toString()),"utf-8"))) {

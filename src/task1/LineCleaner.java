@@ -11,6 +11,15 @@ public class LineCleaner {
 		
 	}
 	
+	/**
+	 * Removes all special characters and HTML tags. These will be replaced by
+	 * the empty string. Also replaces multiple spaces with a single space.
+	 * Removes extra whitespaces.
+	 *
+	 * @param line
+	 *            line to parse
+	 * @return plain text
+	 */
 	public static String cleanLine(String line) {
 		
 		String text = line;

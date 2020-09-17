@@ -1,11 +1,10 @@
 package task2;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+
 
 public class Driver {
 
@@ -20,40 +19,33 @@ public class Driver {
 		DocumentStats stats = new DocumentStats();
 		ArrayList<String> docStats = new ArrayList<>();
 		
-//		try (BufferedReader reader = Files.newBufferedReader(inputPath)){
-//			
-//			String line;
-//			
-//			while ((line = reader.readLine()) != null) {
-//				String[] data = line.split("\t");
-//				stats.add(data);
-//			}
-//			
-//		} 
-//		
-//		catch (IOException e) {
-//			System.err.println("Unable to read file: " + inputPath.toString());
-//		}
-		
+		System.out.println("Reading input file...");
 		stats.readFile(inputPath);
+		System.out.println("DONE\n");
 		
-
+		System.out.println("Calculating stats...");
+		// Total number of documents
 		docStats.add(String.valueOf(stats.numDocuments()));
 		
-
+		// Average word count of the document "body" in the data set
 		docStats.add(String.valueOf(stats.aveBodyWordCount()));
 		
-		// TODO average # of documents per category
+		// Average number of documents per category
 		stats.groupByCategory();
 		docStats.add(String.valueOf(stats.aveNumDocsCategory()));
-
 		
 		stats.aveEachCategory();
+		
+		// Category with maximum average "body" word count
 		docStats.add(stats.getMaxCategory());
-
+		
+		// Category with minimum average "body" word count
 		docStats.add(stats.getMinCategory());
+		System.out.println("DONE\n");
 
+		System.out.println("Writing to tsv...");
 		TSVWriter.statsWriter(outputFile, docStats);
+		System.out.println("See " + output + " for results\n");
 
 	}
 
