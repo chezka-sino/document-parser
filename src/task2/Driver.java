@@ -14,7 +14,7 @@ public class Driver {
 		String output = args[1];
 		
 		Path inputPath = Paths.get(input);
-		Path outputFile = Paths.get("results/" + output);
+		Path outputFile = Paths.get(output);
 		
 		DocumentStats stats = new DocumentStats();
 		ArrayList<String> docStats = new ArrayList<>();

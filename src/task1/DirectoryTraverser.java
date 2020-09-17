@@ -50,7 +50,7 @@ public class DirectoryTraverser {
 		}
 		
 		catch (IOException e) {
-			System.err.println("Unable to travers the directory : " + path);
+			System.err.println("Unable to traverse the directory : " + path);
 		}
 		
 	}
